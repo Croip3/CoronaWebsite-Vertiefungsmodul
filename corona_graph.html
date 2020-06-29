@@ -1,0 +1,261 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script>
+
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+        <script type="text/javascript" src="backup_data/backup_all.json"></script>
+    
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="Corona, Covid-19, Virus" />
+        <meta name="description" content="Corona Tracker" />
+    </head>
+    <body>
+        <!--
+            Colors:
+            darkblue - #122c4d
+            lightblue - #578fda
+            red - #d15055
+            darkorange - #e66d58
+            orange - #f79e64
+        -->
+        <div id="wrapper">
+            <header>
+                <h1>Covid Tracker</h1> 
+                <h3>stay updated - wash your hands</h3>
+            </header>
+
+            <div id="content-wrapper">
+                <div id="total-numbers">
+                    <div class="countPanel">
+                        <p class="countWW" id="totalDeathsWWheading">total Deaths</p>
+                        <p class="count" id="totalDeathsWW">0</p>
+                    </div>
+                    <div class="countPanel">
+                        <p class="countWW" id="totalCasesWWheading">total Cases</p>
+                        <p class="count" id="totalCasesWW">0</p>
+                    </div>
+                    <div class="countPanel">
+                        <p class="countWW" id="totalCuredWWheading">total Recovered</p>
+                        <p class="count" id="totalCuredWW">0</p>
+                    </div>                
+                </div>
+
+                <div id="europe-chart">
+                    <h3>
+                        Covid-19 in Europe
+                    </h3>
+                    <canvas class="chart" id="europeChart" width="500" height="600"></canvas>
+                </div>
+                
+                <div id="europeChartToday">
+                        <!--<h3>
+                            new cases and deaths in Europe today
+                        </h3>-->
+                        <canvas class="chart" id="europeTodayChartNewCases" width="200" height="100"></canvas>
+                        
+                </div>
+            </div>
+        </div>
+
+       
+
+        <script>      
+          
+        const countryTitle = [];
+        const countryCases = [];
+
+        var totalCases = 0;
+        var totalCured = 0;
+        var totalDeaths = 0;
+
+        const euCountry = ["Switzerland", "Portugal", "Spain", "France", "Ireland", "United Kingdom", "Belgium", "Luxembourg", "Netherlands", "Germany", "Italy", "Malta", "Greece", "Cyprus", "Bulgaria", "Poland", "Romania", "Croatia", "Slovenia", "Austria", "Hungary", "Slovakia", "Czechia",  "Lithuania", "Latvia", "Estonia", "Finland", "Sweden", "Norway", "Denmark"];
+        const countryTitleEu = [];
+        const countryCasesEu = [];
+        const countryRecoveredEu = [];
+        const countryDeathsEu = [];
+
+        const countryTitleEuToday = [];    
+        const countryCasesEuToday = [];
+        const countryCasesEuTodayColor = [];
+        const countryDeathsEuToday = [];
+        
+        chart();
+        
+        async function chart(){
+            //auf Json Daten warten (deswegen async)
+            await get_data();
+
+            var ctx = document.getElementById('europeChart').getContext('2d');
+            var europeChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: countryTitleEu,
+                    datasets: [{
+                        label: 'total cases',
+                        backgroundColor: '#122c4d',
+                        stack: 'stack 0',
+                        borderWidth: 1,
+                        data: countryCasesEu
+                    }, {
+                    label: 'deaths',
+                    backgroundColor: '#d15055',
+                    stack: 'stack 1',
+                    data: countryDeathsEu
+                    },{
+                    label: 'recovered',
+                    backgroundColor: '#e66d58',
+                    stack: 'stack 1',
+                    data: countryRecoveredEu
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        yAxes: [{
+                            stacked: true,
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
+            //console.log("resize");
+            //myChart.resize();
+
+            var ctx = document.getElementById('europeTodayChartNewCases').getContext('2d');
+            var europeTodayChartNewCases = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: countryTitleEuToday,
+                    datasets: [{
+                        label: 'deaths today',
+                        backgroundColor: 'rgba(209,80,85, 0.5)',
+                        borderColor: 'rgba(209,80,85, 1)',
+                        borderWidth: 3,
+                        data: countryDeathsEuToday
+                        
+                    }, {
+                        label: 'new cases today',
+                        backgroundColor: 'rgba(18,44,77, 0.5)',
+                        borderColor: 'rgba(18,44,77, 1)',
+                        borderWidth: 3,
+                        data: countryCasesEuToday
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    legend:{
+                        labels:{
+                            fontSize: 25,
+                        },
+                    },
+                    tooltips:{
+                        position: 'average',
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                max: 300,
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        async function get_data(){
+            var data = {}
+            //fetch json
+            //try api data
+            //catch local json file
+            try{
+                const api_url = 'https://api.thevirustracker.com/free-api?countryTotals=ALL';
+                const response = await fetch(api_url);
+                data = await response.json();
+                console.log(data);
+                console.log("API data");
+            } catch (err){
+                console.log("backup data");
+                const response =  await fetch("backup_data/backup_all.json");
+                backup_data = await response.text();
+                var data = JSON.parse(backup_data);
+                console.log(data);
+            }
+            
+            //push data in arrays
+            for(var i=1; i < Object.keys(data.countryitems[0]).length; i++){
+                if((data.countryitems[0][i].title !=  "Russia") &&
+                (data.countryitems[0][i].title !=  "USA") &&
+                (data.countryitems[0][i].title !=  "Brazil"))
+                {
+                    //console.log(data.countryitems[0][i].title)
+                    countryTitle.push(data.countryitems[0][i].title)
+                    countryCases.push(data.countryitems[0][i].total_cases)
+                }
+            }
+
+            //push data in array
+            for(var i=1; i < Object.keys(data.countryitems[0]).length; i++){
+                //only eu countrys + GB + Norway + Switzerland
+                if(euCountry.includes(data.countryitems[0][i].title))
+                {
+                    //console.log(data.countryitems[0][i].title)
+                    countryTitleEu.push(data.countryitems[0][i].title);
+                    countryCasesEu.push(data.countryitems[0][i].total_cases);
+                    countryDeathsEu.push(data.countryitems[0][i].total_deaths);
+                    countryRecoveredEu.push(data.countryitems[0][i].total_recovered);
+
+                    //new cases, only countrys with new cases/deaths
+                    if(data.countryitems[0][i].total_new_cases_today > 0 || data.countryitems[0][i].total_new_deaths_today > 0){
+                        countryCasesEuToday.push(data.countryitems[0][i].total_new_cases_today);
+                        countryDeathsEuToday.push(data.countryitems[0][i].total_new_deaths_today);
+                        countryTitleEuToday.push(data.countryitems[0][i].title);
+                    }                    
+                }
+            }
+            
+            //calc total cases
+            for(var i=1; i < Object.keys(data.countryitems[0]).length; i++){
+                
+                //console.log(data.countryitems[0][i].title)
+                totalCases = totalCases + data.countryitems[0][i].total_cases;
+                totalCured = totalCured + data.countryitems[0][i].total_recovered;
+                totalDeaths = totalDeaths + data.countryitems[0][i].total_deaths;                 
+            }
+            console.log(totalCases);
+            console.log(totalCured);
+            console.log(totalDeaths);
+            document.getElementById("totalCasesWW").innerHTML = totalCases;
+            document.getElementById("totalCuredWW").innerHTML = totalCured;
+            document.getElementById("totalDeathsWW").innerHTML = totalDeaths;
+
+            //counter
+            $('.count').each(function () {
+                $(this).prop('Counter',0).animate({
+                    Counter: $(this).text()
+                }, {
+                    duration: 5000,
+                    easing: 'swing',
+                    step: function (now) {
+                        $(this).text(Math.ceil(now));
+                    }
+                });
+            });
+        }
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,430 @@
+html{
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-style: none;
+}
+body{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+main {
+   display: flex; /* flex container bestimmen */
+   flex-direction: row; /* row (default): left to right, Zeilen oder Spalten moeglich */
+   flex-wrap: wrap;  /* standardgemaessig wollen die Flex-Elemente alle in eine Zeile, mit wrap umbrechen die Elemente nach unten, wenn nötig, ohne wären alle vier Bereich nebeneinander  */	
+}
+
+h1{
+    margin: 0;
+    padding: 0.2em;
+    font-size: 4em;
+}
+h3{
+    margin: 0;
+    padding: 0 0 0.2em 0;
+    font-size: 2em;
+}
+
+#wrapper{
+    margin: 0;
+    padding: 0;
+}
+#content-wrapper{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    width: 100%;
+    background-color: #122c4d;
+    text-align: center;
+    color: #ffffff;
+    border-bottom: solid 0.1em #ffffff; 
+}
+
+#content-wrapper #total-numbers{
+    width: 100%;
+    background-color:#122c4d;
+}
+
+#content-wrapper #total-numbers .countPanel{
+    float: left;
+    width: 33.333333%
+}
+
+#content-wrapper #total-numbers .count{
+    display: inline;
+    background-color:#122c4d;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 3em;
+    letter-spacing: 0.3em;
+
+    width: 100%;
+    float: left;
+    color: #ffffff;
+    text-align: center;
+    padding: 0.5em 0 0.5em 0;
+    margin: 0;
+}
+
+#content-wrapper #total-numbers .countWW{
+    display: inline;
+    background-color:#122c4d;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 2em;
+    letter-spacing: 0.3em;
+
+    width: 100%;
+    float: left;
+    color: #ffffff;
+    text-align: center;
+    padding: 0.5em 0 0.5em 0;
+    margin: 0;
+}
+
+
+#content-wrapper #total-numbers #totalCasesWW{
+    background-color: #122c4d;
+}
+#content-wrapper #total-numbers #totalCuredWW{
+    background-color: #e66d58;
+}
+#content-wrapper #total-numbers #totalDeathsWW{
+    background-color: #d15055;
+}
+
+
+#content-wrapper #total-numbers #totalCasesWWheading{
+    background-color: #122c4d;
+}
+#content-wrapper #total-numbers #totalCuredWWheading{
+    background-color: #e66d58;
+}
+#content-wrapper #total-numbers #totalDeathsWWheading{
+    background-color: #d15055;
+}
+
+#europe-chart{
+    padding: 1em;
+    margin: 0;
+}
+#europe-chart h3{
+    text-align: center;
+    font-size: 3em;
+}
+
+#europeChartToday canvas{
+    padding: 4em;
+}
+
+#europeChartToday h3{
+    text-align: center;
+    font-size: 3em;
+}
+
+
+@media screen and (max-width: 80em){
+    html{
+        display: flex;
+        justify-content: center;
+    }
+    body{
+        width: 100%;
+    }
+
+    h1{
+        font-weight: 700;
+        font-size: 2.2em;
+        letter-spacing: 0.05em;
+    }
+    h3{
+        font-weight: 400;
+        font-size: 1em;
+        letter-spacing: 0.05em;
+    }
+
+    
+    #content-wrapper #total-numbers .countPanel{
+        float: left;
+        display: block;
+        width: 100%;
+    }
+    #content-wrapper #total-numbers .count{
+        font-weight: 700;
+        font-size: 1.5em;
+        letter-spacing: 0.3em;
+    
+        width: 100%;
+        float: center;
+        text-align: center;
+        padding: 0.2em 0 0.2em 0;
+    }
+    #content-wrapper #total-numbers .countWW{
+        display: inline;
+        font-weight: 900;
+        font-size: 1.4em;
+        letter-spacing: 0.2em;
+    
+        width: 100%;
+        float: center;
+        text-align: center;
+        padding: 0.2em 0 0.2em 0;
+    }
+    
+
+    /*footer*/
+    footer p{
+        font-size: 0.8em;
+    }
+    footer a{
+        font-size: 0.8em;
+    }
+    
+}
+
+
+@media screen and (max-width: 40em){
+    html{
+        display: flex;
+        justify-content: center;
+    }
+    body{
+        width: 100%;
+    }
+
+    h1{
+        font-weight: 700;
+        font-size: 2.2em;
+        letter-spacing: 0.05em;
+    }
+    h3{
+        font-weight: 400;
+        font-size: 1em;
+        letter-spacing: 0.05em;
+    }
+    /*footer*/
+    footer p{
+        font-size: 0.8em;
+    }
+    footer a{
+        font-size: 0.8em;
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  body .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 300px;
+    margin: -150px -250px;
+    counter-reset: tab-counter 5;
+  }
+  body .container input[type="radio"] {
+    display: none;
+  }
+  body .container input[type="radio"]:checked + label ~ label:nth-child(2) {
+    width: 78px;
+  }
+  body .container input[type="radio"]:checked + label ~ label:nth-child(2) .content {
+    -webit-transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
+    transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
+    opacity: 0;
+    pointer-events: none;
+  }
+  body .container input[type="radio"] + label {
+    /*position: absolute;*/
+    height: 100%;
+    box-shadow: 2px 0px 4px -2px #000;
+    cursor: pointer;
+    -webit-transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
+    transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
+  }
+  body .container input[type="radio"] + label:nth-child(2) {
+    box-shadow: none;
+  }
+  body .container input[type="radio"] + label:nth-child(2) {
+    width: 500px;
+    background: #9575cd;
+  }
+  body .container input[type="radio"] + label .content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 250px;
+    margin-left: -125px;
+    counter-increment: tab-counter -1;
+    text-align: center;
+  }
+  body .container input[type="radio"] + label .content:after {
+    content: counter(tab-counter);
+  }
+  body .container input[type="radio"]:checked + label ~ label:nth-child(4) {
+    width: 54px;
+  }
+  body .container input[type="radio"]:checked + label ~ label:nth-child(4) .content {
+    -webit-transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
+    transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
+    opacity: 0;
+    pointer-events: none;
+  }
+  body .container input[type="radio"] + label {
+    position: absolute;
+    height: 100%;
+    box-shadow: 2px 0px 4px -2px #000;
+    cursor: pointer;
+    -webit-transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
+    transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
+  }
+  body .container input[type="radio"] + label:nth-child(2) {
+    box-shadow: none;
+  }
+  body .container input[type="radio"] + label:nth-child(4) {
+    width: 476px;
+    background: #64b5f6;
+  }
+  body .container input[type="radio"] + label:nth-child(4):after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 100%;
+    width: 18px;
+    height: 75px;
+    border-radius: 0 7.5px 7.5px 0;
+    background: #64b5f6;
+    box-shadow: 3px 0px 6px -3px #000;
+  }
+  body .container input[type="radio"] + label .content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 250px;
+    margin-left: -125px;
+    counter-increment: tab-counter -1;
+    text-align: center;
+  }
+  body .container input[type="radio"] + label .content:after {
+    content: counter(tab-counter);
+  }
+  body .container input[type="radio"]:checked + label ~ label:nth-child(6) {
+    width: 30px;
+  }
+  body .container input[type="radio"]:checked + label ~ label:nth-child(6) .content {
+    -webit-transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
+    transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
+    opacity: 0;
+    pointer-events: none;
+  }
+  body .container input[type="radio"] + label {
+    position: absolute;
+    height: 100%;
+    box-shadow: 2px 0px 4px -2px #000;
+    cursor: pointer;
+    -webit-transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
+    transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
+  }
+  body .container input[type="radio"] + label:nth-child(2) {
+    box-shadow: none;
+  }
+  body .container input[type="radio"] + label:nth-child(6) {
+    width: 452px;
+    background: #81c784;
+  }
+  body .container input[type="radio"] + label:nth-child(6):after {
+    position: absolute;
+    content: "";
+    top: 25%;
+    left: 100%;
+    width: 18px;
+    height: 75px;
+    border-radius: 0 7.5px 7.5px 0;
+    background: #81c784;
+    box-shadow: 3px 0px 6px -3px #000;
+  }
+  body .container input[type="radio"] + label .content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 250px;
+    margin-left: -125px;
+    counter-increment: tab-counter -1;
+    text-align: center;
+  }
+  body .container input[type="radio"] + label .content:after {
+    content: counter(tab-counter);
+  }
+  body .container input[type="radio"]:checked + label ~ label:nth-child(8) {
+    width: 6px;
+  }
+  body .container input[type="radio"]:checked + label ~ label:nth-child(8) .content {
+    -webit-transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
+    transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
+    opacity: 0;
+    pointer-events: none;
+  }
+  body .container input[type="radio"] + label {
+    position: absolute;
+    height: 100%;
+    box-shadow: 2px 0px 4px -2px #000;
+    cursor: pointer;
+    -webit-transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
+    transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
+  }
+  body .container input[type="radio"] + label:nth-child(2) {
+    box-shadow: none;
+  }
+  body .container input[type="radio"] + label:nth-child(8) {
+    width: 428px;
+    background: #e57373;
+  }
+  body .container input[type="radio"] + label:nth-child(8):after {
+    position: absolute;
+    content: "";
+    top: 0%;
+    left: 100%;
+    width: 18px;
+    height: 75px;
+    border-radius: 0 7.5px 7.5px 0;
+    background: #e57373;
+    box-shadow: 3px 0px 6px -3px #000;
+  }
+  body .container input[type="radio"] + label .content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 250px;
+    margin-left: -125px;
+    counter-increment: tab-counter -1;
+    text-align: center;
+  }
+  body .container input[type="radio"] + label .content:after {
+    content: counter(tab-counter);
+  }
