@@ -6,6 +6,7 @@ html{
     display: flex;
     justify-content: center;
     border-style: none;
+    overflow-x: hidden;
 }
 body{
     padding: 0;
@@ -125,6 +126,9 @@ header{
     font-size: 3em;
 }
 
+#europeChartToday{
+  margin: 0 6em 0 0;
+}
 #europeChartToday canvas{
     padding: 4em;
 }

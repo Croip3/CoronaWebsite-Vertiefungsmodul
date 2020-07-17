@@ -26,7 +26,7 @@
         -->
         <div id="wrapper">
             <header>
-                <h1>Covid Tracker</h1> 
+                <h1>Covid-19 Tracker</h1> 
                 <h3>stay updated - wash your hands</h3>
             </header>
 
@@ -57,7 +57,9 @@
                         <!--<h3>
                             new cases and deaths in Europe today
                         </h3>-->
+                        <div style="width: 100%;">
                         <canvas class="chart" id="europeTodayChartNewCases" width="200" height="100"></canvas>
+                        </div>
                         
                 </div>
             </div>
@@ -154,6 +156,7 @@
                     }]
                 },
                 options: {
+                    maintainAspectRatio: false,
                     responsive: true,
                     legend:{
                         labels:{
@@ -168,7 +171,7 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                max: 300,
+                                //max: 300,
                             }
                         }]
                     }
