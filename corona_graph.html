@@ -1,3 +1,10 @@
+<!--
+    TODO
+    ~verhältnis corona einwohner
+    ~top 5 WOrldwide
+-->
+
+
 <html>
     <head>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
@@ -119,6 +126,11 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    legend:{
+                        labels:{
+                            fontSize: 25,
+                        },
+                    },
                     scales: {
                         yAxes: [{
                             stacked: true,
@@ -156,7 +168,7 @@
                     }]
                 },
                 options: {
-                    maintainAspectRatio: false,
+                    //maintainAspectRatio: false,
                     responsive: true,
                     legend:{
                         labels:{
@@ -244,6 +256,32 @@
             document.getElementById("totalCasesWW").innerHTML = totalCases;
             document.getElementById("totalCuredWW").innerHTML = totalCured;
             document.getElementById("totalDeathsWW").innerHTML = totalDeaths;
+
+            var countrySortCases = [];
+            var countrySort = [];
+            var unsorted = true;
+
+            for(let i = 1; i < Object.keys(data.countryitems[0]).length; i++){
+                countrySortCases.push(data.countryitems[0][i].total_cases);
+                countrySort.push(data.countryitems[0][i].title);
+            }
+            console.log("countrySortCases");
+            console.log(countrySortCases);
+            
+            while(unsorted){
+                unsorted = false;
+                for(let i = 0; i < Object.keys(data.countryitems[0]-1).length; i++){
+                    if(countrySortCases[i] > countrySortCases[i+1]){
+                        var temp = countrySortCases[i];
+                        countrySortCases[i] = countrySortCases[i+1];
+                        countrySortCases[i+1] = temp;
+                        unsorted = true;
+                    }
+                }
+                if(unsorted == false){
+                    console.log(countrySortCases);
+                }
+            }
 
             //counter
             $('.count').each(function () {
