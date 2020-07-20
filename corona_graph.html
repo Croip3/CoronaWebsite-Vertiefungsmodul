@@ -191,6 +191,9 @@
             });
         }
 
+        var countrySortCases = [];
+        var countrySort = [];
+
         async function get_data(){
             var data = {}
             //fetch json
@@ -257,10 +260,10 @@
             document.getElementById("totalCuredWW").innerHTML = totalCured;
             document.getElementById("totalDeathsWW").innerHTML = totalDeaths;
 
-            var countrySortCases = [];
-            var countrySort = [];
+            //top 5 countrys
+            
             var unsorted = true;
-
+            
             for(let i = 1; i < Object.keys(data.countryitems[0]).length; i++){
                 countrySortCases.push(data.countryitems[0][i].total_cases);
                 countrySort.push(data.countryitems[0][i].title);
@@ -270,18 +273,34 @@
             
             while(unsorted){
                 unsorted = false;
-                for(let i = 0; i < Object.keys(data.countryitems[0]-1).length; i++){
-                    if(countrySortCases[i] > countrySortCases[i+1]){
+                console.log("unsorted");
+                for(let i = 0; i < countrySortCases.length; i++){
+                    if(countrySortCases[i] < countrySortCases[i+1]){
                         var temp = countrySortCases[i];
                         countrySortCases[i] = countrySortCases[i+1];
                         countrySortCases[i+1] = temp;
+
+                        temp = countrySort[i];
+                        countrySort[i] = countrySort[i+1];
+                        countrySort[i+1] = temp;
                         unsorted = true;
+
                     }
                 }
                 if(unsorted == false){
                     console.log(countrySortCases);
+                    console.log(countrySort);
                 }
             }
+            console.log(countrySortCases.length);
+            for(let i = 0; i < countrySortCases.length - 5; i++){
+                countrySortCases.pop();
+                countrySort.pop();
+                console.log(i);
+            }
+            console.log(countrySortCases);
+            console.log(countrySort);
+            //top 5 countrys END
 
             //counter
             $('.count').each(function () {
@@ -295,6 +314,7 @@
                     }
                 });
             });
+            //counter END
         }
 
         </script>
