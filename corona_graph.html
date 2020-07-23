@@ -70,12 +70,36 @@
                         
                 </div>
 
-                <div id="topFiveWorldwide">
+                <div id="topFiveWorldwide" style="text-align: center;">
                     <h3>
                         TOP 5 RANKING WOLRDWIDE
                     </h3>
-                    <div style="width: 100%;">
-                    <canvas class="chart" id="topFiveWorldWide" width="200" height="100"></canvas>
+                    <div class="topfiveWrapper">
+                        <div class="topfive" style="width: 50%; float: right;">
+                            <div class="topFiveRank" style="background-color: #d15055;">
+                                <p id="rankOneName" style="background-color: #d15055;">test</p>
+                                <p id="rankOneValue" style="background-color: #d15055;">test</p>
+                            </div>
+                            <div class="topFiveRank" style="background-color: #e66d58;">
+                                <p id="rankTwoName" style="background-color: #e66d58;">test</p>
+                                <p id="rankTwoValue" style="background-color: #e66d58;">test</p>
+                            </div>
+                            <div class="topFiveRank" style="background-color: #f79e64;">
+                                <p id="rankThreeName" style="background-color: #f79e64;">test</p>
+                                <p id="rankThreeValue" style="background-color: #f79e64;">test</p>
+                            </div>
+                            <div class="topFiveRank" style="background-color: #578fda;">
+                                <p id="rankFourName" style="background-color: #578fda;">test</p>
+                                <p id="rankFourValue" style="background-color: #578fda;">test</p>
+                            </div>
+                            <div class="topFiveRank" style="background-color: #122c4d;">
+                                <p id="rankFiveName" style="background-color: #122c4d;">test</p>
+                                <p id="rankFiveValue" style="background-color: #122c4d;">test</p>
+                            </div>
+                        </div>
+                        <div class="topfive" style="width: 50%; float: left;">
+                        <canvas class="chart" id="topFiveWorldWide" width="500" height="500"></canvas>
+                        </div>
                     </div>
                     
             </div>
@@ -215,11 +239,11 @@
             //TOP 5 WORLDWIDE
             var ctx = document.getElementById('topFiveWorldWide').getContext('2d');
             var topFiveWorldWide = new Chart(ctx, {
-                type: 'pie',
+                type: 'doughnut',
                 data: {
                     labels: countryTitlesTopFive,
                     datasets: [{
-                        label: 'deaths today',
+                        label: 'countrys',
                         backgroundColor: ['#d15055', '#e66d58', '#f79e64', '#578fda', '#122c4d'],
                         borderWidth: 3,
                         data: countryTopFive
@@ -249,6 +273,21 @@
                     }
                 }
             });
+
+            document.getElementById("rankOneName").innerHTML = countryTitlesTopFive[0];
+            document.getElementById("rankOneValue").innerHTML = countryTopFive[0];
+
+            document.getElementById("rankTwoName").innerHTML = countryTitlesTopFive[1];
+            document.getElementById("rankTwoValue").innerHTML = countryTopFive[1];
+
+            document.getElementById("rankThreeName").innerHTML = countryTitlesTopFive[2];
+            document.getElementById("rankThreeValue").innerHTML = countryTopFive[2];
+
+            document.getElementById("rankFourName").innerHTML = countryTitlesTopFive[3];
+            document.getElementById("rankFourValue").innerHTML = countryTopFive[3];
+
+            document.getElementById("rankFiveName").innerHTML = countryTitlesTopFive[4];
+            document.getElementById("rankFiveValue").innerHTML = countryTopFive[4];
             
 		
 	

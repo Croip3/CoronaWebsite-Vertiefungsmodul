@@ -138,6 +138,29 @@ header{
     font-size: 3em;
 }
 
+#topFiveWorldwide h3{
+  text-align: center;
+}
+.topfiveWrapper{
+}
+
+.topfive{
+ width: 50%;
+ display: inline; 
+}
+
+.topFiveRank{
+  width: 100%;
+  height: 20%;
+}
+.topFiveRank p{  
+  color: rgb(255, 255, 255);
+  text-align: left;
+  font-size: 2em;
+  /*margin: 2em 2em 0em 2em;*/
+  padding: 0.5em 1em 0em 1em;
+}
+
 
 @media screen and (max-width: 80em){
     html{
