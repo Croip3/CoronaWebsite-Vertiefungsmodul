@@ -69,6 +69,16 @@
                         </div>
                         
                 </div>
+
+                <div id="topFiveWorldwide">
+                    <h3>
+                        TOP 5 RANKING WOLRDWIDE
+                    </h3>
+                    <div style="width: 100%;">
+                    <canvas class="chart" id="topFiveWorldWide" width="200" height="100"></canvas>
+                    </div>
+                    
+            </div>
             </div>
         </div>
 
@@ -93,6 +103,9 @@
         const countryCasesEuToday = [];
         const countryCasesEuTodayColor = [];
         const countryDeathsEuToday = [];
+
+        const countryTopFive = [];
+        const countryTitlesTopFive = [];
         
         chart();
         
@@ -100,6 +113,7 @@
             //auf Json Daten warten (deswegen async)
             await get_data();
 
+            //BIG EUROPE CHART
             var ctx = document.getElementById('europeChart').getContext('2d');
             var europeChart = new Chart(ctx, {
                 type: 'horizontalBar',
@@ -126,6 +140,10 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    tooltips: {
+                        titleFontSize: 20,
+                        bodyFontSize: 20
+                    },
                     legend:{
                         labels:{
                             fontSize: 25,
@@ -147,6 +165,7 @@
             //console.log("resize");
             //myChart.resize();
 
+            //EUROPE TODAY CASES
             var ctx = document.getElementById('europeTodayChartNewCases').getContext('2d');
             var europeTodayChartNewCases = new Chart(ctx, {
                 type: 'line',
@@ -179,6 +198,8 @@
                         position: 'average',
                         mode: 'index',
                         intersect: false,
+                        titleFontSize: 20,
+                        bodyFontSize: 20
                     },
                     scales: {
                         yAxes: [{
@@ -189,6 +210,48 @@
                     }
                 }
             });
+
+
+            //TOP 5 WORLDWIDE
+            var ctx = document.getElementById('topFiveWorldWide').getContext('2d');
+            var topFiveWorldWide = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: countryTitlesTopFive,
+                    datasets: [{
+                        label: 'deaths today',
+                        backgroundColor: ['#d15055', '#e66d58', '#f79e64', '#578fda', '#122c4d'],
+                        borderWidth: 3,
+                        data: countryTopFive
+                    }]
+                },
+                options: {
+                    //maintainAspectRatio: false,
+                    responsive: true,
+                    legend:{
+                        labels:{
+                            fontSize: 25,
+                        },
+                    },
+                    tooltips:{
+                        position: 'average',
+                        mode: 'index',
+                        intersect: false,
+                        titleFontSize: 20,
+                        bodyFontSize: 20
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                //max: 300,
+                            }
+                        }]
+                    }
+                }
+            });
+            
+		
+	
         }
 
         var countrySortCases = [];
@@ -268,8 +331,8 @@
                 countrySortCases.push(data.countryitems[0][i].total_cases);
                 countrySort.push(data.countryitems[0][i].title);
             }
-            console.log("countrySortCases");
-            console.log(countrySortCases);
+            //console.log("countrySortCases");
+            //console.log(countrySortCases);
             
             while(unsorted){
                 unsorted = false;
@@ -288,18 +351,16 @@
                     }
                 }
                 if(unsorted == false){
-                    console.log(countrySortCases);
-                    console.log(countrySort);
+                    //console.log(countrySortCases);
+                    //console.log(countrySort);
                 }
             }
-            console.log(countrySortCases.length);
-            for(let i = 0; i < countrySortCases.length - 5; i++){
-                countrySortCases.pop();
-                countrySort.pop();
-                console.log(i);
+            for(let i = 0; i < 5; i++){
+                countryTopFive.push(countrySortCases[i]);
+                countryTitlesTopFive.push(countrySort[i]);
             }
-            console.log(countrySortCases);
-            console.log(countrySort);
+            //console.log(countryTopFive);
+            //console.log(countryTitlesTopFive);
             //top 5 countrys END
 
             //counter
