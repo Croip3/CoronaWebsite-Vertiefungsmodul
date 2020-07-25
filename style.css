@@ -30,8 +30,11 @@ h1{
 }
 h3{
     margin: 0;
-    padding: 0 0 0.2em 0;
+    padding: 1em 0 0.5em 0;
     font-size: 2em;
+}
+hr{
+  border: #f79e64 solid solid;
 }
 
 #wrapper{
@@ -142,6 +145,7 @@ header{
   text-align: center;
 }
 .topfiveWrapper{
+  display: flex;
 }
 
 .topfive{
@@ -158,9 +162,28 @@ header{
   text-align: left;
   font-size: 2em;
   /*margin: 2em 2em 0em 2em;*/
-  padding: 0.5em 1em 0em 1em;
+  margin: 0 !important;
+  padding: 2em ;
+  font-size: 3em;
+  letter-spacing: 0.5em;
 }
 
+footer{
+  border-top: #f79e64 solid;
+  height: 2em;
+  background-color: #122c4d;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+footer p{
+  background-color: #122c4d;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1em;
+  margin: 0;
+}
 
 @media screen and (max-width: 80em){
     html{
@@ -250,208 +273,4 @@ header{
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  body .container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 500px;
-    height: 300px;
-    margin: -150px -250px;
-    counter-reset: tab-counter 5;
-  }
-  body .container input[type="radio"] {
-    display: none;
-  }
-  body .container input[type="radio"]:checked + label ~ label:nth-child(2) {
-    width: 78px;
-  }
-  body .container input[type="radio"]:checked + label ~ label:nth-child(2) .content {
-    -webit-transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
-    transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
-    opacity: 0;
-    pointer-events: none;
-  }
-  body .container input[type="radio"] + label {
-    /*position: absolute;*/
-    height: 100%;
-    box-shadow: 2px 0px 4px -2px #000;
-    cursor: pointer;
-    -webit-transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
-    transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
-  }
-  body .container input[type="radio"] + label:nth-child(2) {
-    box-shadow: none;
-  }
-  body .container input[type="radio"] + label:nth-child(2) {
-    width: 500px;
-    background: #9575cd;
-  }
-  body .container input[type="radio"] + label .content {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 250px;
-    margin-left: -125px;
-    counter-increment: tab-counter -1;
-    text-align: center;
-  }
-  body .container input[type="radio"] + label .content:after {
-    content: counter(tab-counter);
-  }
-  body .container input[type="radio"]:checked + label ~ label:nth-child(4) {
-    width: 54px;
-  }
-  body .container input[type="radio"]:checked + label ~ label:nth-child(4) .content {
-    -webit-transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
-    transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
-    opacity: 0;
-    pointer-events: none;
-  }
-  body .container input[type="radio"] + label {
-    position: absolute;
-    height: 100%;
-    box-shadow: 2px 0px 4px -2px #000;
-    cursor: pointer;
-    -webit-transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
-    transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
-  }
-  body .container input[type="radio"] + label:nth-child(2) {
-    box-shadow: none;
-  }
-  body .container input[type="radio"] + label:nth-child(4) {
-    width: 476px;
-    background: #64b5f6;
-  }
-  body .container input[type="radio"] + label:nth-child(4):after {
-    position: absolute;
-    content: "";
-    top: 50%;
-    left: 100%;
-    width: 18px;
-    height: 75px;
-    border-radius: 0 7.5px 7.5px 0;
-    background: #64b5f6;
-    box-shadow: 3px 0px 6px -3px #000;
-  }
-  body .container input[type="radio"] + label .content {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 250px;
-    margin-left: -125px;
-    counter-increment: tab-counter -1;
-    text-align: center;
-  }
-  body .container input[type="radio"] + label .content:after {
-    content: counter(tab-counter);
-  }
-  body .container input[type="radio"]:checked + label ~ label:nth-child(6) {
-    width: 30px;
-  }
-  body .container input[type="radio"]:checked + label ~ label:nth-child(6) .content {
-    -webit-transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
-    transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
-    opacity: 0;
-    pointer-events: none;
-  }
-  body .container input[type="radio"] + label {
-    position: absolute;
-    height: 100%;
-    box-shadow: 2px 0px 4px -2px #000;
-    cursor: pointer;
-    -webit-transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
-    transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
-  }
-  body .container input[type="radio"] + label:nth-child(2) {
-    box-shadow: none;
-  }
-  body .container input[type="radio"] + label:nth-child(6) {
-    width: 452px;
-    background: #81c784;
-  }
-  body .container input[type="radio"] + label:nth-child(6):after {
-    position: absolute;
-    content: "";
-    top: 25%;
-    left: 100%;
-    width: 18px;
-    height: 75px;
-    border-radius: 0 7.5px 7.5px 0;
-    background: #81c784;
-    box-shadow: 3px 0px 6px -3px #000;
-  }
-  body .container input[type="radio"] + label .content {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 250px;
-    margin-left: -125px;
-    counter-increment: tab-counter -1;
-    text-align: center;
-  }
-  body .container input[type="radio"] + label .content:after {
-    content: counter(tab-counter);
-  }
-  body .container input[type="radio"]:checked + label ~ label:nth-child(8) {
-    width: 6px;
-  }
-  body .container input[type="radio"]:checked + label ~ label:nth-child(8) .content {
-    -webit-transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
-    transition: opacity 0.4s cubic-bezier(0.11, 0.65, 0.04, 1);
-    opacity: 0;
-    pointer-events: none;
-  }
-  body .container input[type="radio"] + label {
-    position: absolute;
-    height: 100%;
-    box-shadow: 2px 0px 4px -2px #000;
-    cursor: pointer;
-    -webit-transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
-    transition: width 1.2s cubic-bezier(0.11, 0.65, 0.04, 1);
-  }
-  body .container input[type="radio"] + label:nth-child(2) {
-    box-shadow: none;
-  }
-  body .container input[type="radio"] + label:nth-child(8) {
-    width: 428px;
-    background: #e57373;
-  }
-  body .container input[type="radio"] + label:nth-child(8):after {
-    position: absolute;
-    content: "";
-    top: 0%;
-    left: 100%;
-    width: 18px;
-    height: 75px;
-    border-radius: 0 7.5px 7.5px 0;
-    background: #e57373;
-    box-shadow: 3px 0px 6px -3px #000;
-  }
-  body .container input[type="radio"] + label .content {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 250px;
-    margin-left: -125px;
-    counter-increment: tab-counter -1;
-    text-align: center;
-  }
-  body .container input[type="radio"] + label .content:after {
-    content: counter(tab-counter);
-  }
+  

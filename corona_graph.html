@@ -59,6 +59,8 @@
                     </h3>
                     <canvas class="chart" id="europeChart" width="500" height="600"></canvas>
                 </div>
+
+                <hr>
                 
                 <div id="europeChartToday">
                         <!--<h3>
@@ -70,43 +72,43 @@
                         
                 </div>
 
+                <hr>
+
                 <div id="topFiveWorldwide" style="text-align: center;">
                     <h3>
-                        TOP 5 RANKING WOLRDWIDE
+                        TOP 5 CASES RANKING WOLRDWIDE
                     </h3>
                     <div class="topfiveWrapper">
                         <div class="topfive" style="width: 50%; float: right;">
                             <div class="topFiveRank" style="background-color: #d15055;">
-                                <p id="rankOneName" style="background-color: #d15055;">test</p>
-                                <p id="rankOneValue" style="background-color: #d15055;">test</p>
+                                <p id="rankOneName" style="background-color: #d15055;">Rank#1</p>
                             </div>
                             <div class="topFiveRank" style="background-color: #e66d58;">
-                                <p id="rankTwoName" style="background-color: #e66d58;">test</p>
-                                <p id="rankTwoValue" style="background-color: #e66d58;">test</p>
+                                <p id="rankTwoName" style="background-color: #e66d58;">Rank#2</p>
                             </div>
                             <div class="topFiveRank" style="background-color: #f79e64;">
-                                <p id="rankThreeName" style="background-color: #f79e64;">test</p>
-                                <p id="rankThreeValue" style="background-color: #f79e64;">test</p>
+                                <p id="rankThreeName" style="background-color: #f79e64;">Rank#3</p>
                             </div>
                             <div class="topFiveRank" style="background-color: #578fda;">
-                                <p id="rankFourName" style="background-color: #578fda;">test</p>
-                                <p id="rankFourValue" style="background-color: #578fda;">test</p>
+                                <p id="rankFourName" style="background-color: #578fda;">Rank#4</p>
                             </div>
                             <div class="topFiveRank" style="background-color: #122c4d;">
-                                <p id="rankFiveName" style="background-color: #122c4d;">test</p>
-                                <p id="rankFiveValue" style="background-color: #122c4d;">test</p>
+                                <p id="rankFiveName" style="background-color: #122c4d;">Rank#5</p>
                             </div>
                         </div>
                         <div class="topfive" style="width: 50%; float: left;">
-                        <canvas class="chart" id="topFiveWorldWide" width="500" height="500"></canvas>
+                        <canvas class="chart" id="topFiveWorldWide" width="400" height="400"></canvas>
                         </div>
                     </div>
                     
-            </div>
+                </div>
             </div>
         </div>
 
-       
+        <footer>
+            &copy; Christopher Wittig 2020
+            <p>Souce: https://thevirustracker.com/</p>
+        </footer>
 
         <script>      
           
@@ -239,7 +241,7 @@
             //TOP 5 WORLDWIDE
             var ctx = document.getElementById('topFiveWorldWide').getContext('2d');
             var topFiveWorldWide = new Chart(ctx, {
-                type: 'doughnut',
+                type: 'pie',
                 data: {
                     labels: countryTitlesTopFive,
                     datasets: [{
@@ -253,7 +255,9 @@
                     //maintainAspectRatio: false,
                     responsive: true,
                     legend:{
+                        display: false,
                         labels:{
+                            display: false,
                             fontSize: 25,
                         },
                     },
@@ -274,20 +278,20 @@
                 }
             });
 
-            document.getElementById("rankOneName").innerHTML = countryTitlesTopFive[0];
-            document.getElementById("rankOneValue").innerHTML = countryTopFive[0];
+            document.getElementById("rankOneName").innerHTML = countryTitlesTopFive[0] + " _ " + countryTopFive[0];
+            //document.getElementById("rankOneValue").innerHTML = countryTopFive[0];
 
-            document.getElementById("rankTwoName").innerHTML = countryTitlesTopFive[1];
-            document.getElementById("rankTwoValue").innerHTML = countryTopFive[1];
+            document.getElementById("rankTwoName").innerHTML = countryTitlesTopFive[1] + " _ " + countryTopFive[1];
+            //document.getElementById("rankTwoValue").innerHTML = countryTopFive[1];
 
-            document.getElementById("rankThreeName").innerHTML = countryTitlesTopFive[2];
-            document.getElementById("rankThreeValue").innerHTML = countryTopFive[2];
+            document.getElementById("rankThreeName").innerHTML = countryTitlesTopFive[2] + " _ " + countryTopFive[2];
+            //document.getElementById("rankThreeValue").innerHTML = countryTopFive[2];
 
-            document.getElementById("rankFourName").innerHTML = countryTitlesTopFive[3];
-            document.getElementById("rankFourValue").innerHTML = countryTopFive[3];
+            document.getElementById("rankFourName").innerHTML = countryTitlesTopFive[3] + " _ " + countryTopFive[3];
+            //document.getElementById("rankFourValue").innerHTML = countryTopFive[3];
 
-            document.getElementById("rankFiveName").innerHTML = countryTitlesTopFive[4];
-            document.getElementById("rankFiveValue").innerHTML = countryTopFive[4];
+            document.getElementById("rankFiveName").innerHTML = countryTitlesTopFive[4] + " _ " + countryTopFive[4];
+            //document.getElementById("rankFiveValue").innerHTML = countryTopFive[4];
             
 		
 	
