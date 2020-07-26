@@ -1,0 +1,170 @@
+[
+    {
+       "GDP in $Billions":386.4278,
+       "GDP per cap":44176.52,
+       "jurisdiction":"Austria",
+       "population in millions":8.7474
+    },
+    {
+       "GDP in $Billions":466.3657,
+       "GDP per cap":41096.16,
+       "jurisdiction":"Belgium",
+       "population in millions":11.3482
+    },
+    {
+       "GDP in $Billions":52.3952,
+       "GDP per cap":7350.8,
+       "jurisdiction":"Bulgaria",
+       "population in millions":7.1278
+    },
+    {
+       "GDP in $Billions":50.4253,
+       "GDP per cap":12090.67,
+       "jurisdiction":"Croatia",
+       "population in millions":4.1706
+    },
+    {
+       "GDP in $Billions":19.8017,
+       "GDP per cap":23324.2,
+       "jurisdiction":"Cyprus",
+       "population in millions":1.1701
+    },
+    {
+       "GDP in $Billions":192.9246,
+       "GDP per cap":18266.55,
+       "jurisdiction":"Czech Republic",
+       "population in millions":10.5616
+    },
+    {
+       "GDP in $Billions":306.1429,
+       "GDP per cap":53417.66,
+       "jurisdiction":"Denmark",
+       "population in millions":5.7311
+    },
+    {
+       "GDP in $Billions":23.1367,
+       "GDP per cap":17574.69,
+       "jurisdiction":"Estonia",
+       "population in millions":1.3165
+    },
+    {
+       "GDP in $Billions":236.785,
+       "GDP per cap":43090.25,
+       "jurisdiction":"Finland",
+       "population in millions":5.4951
+    },
+    {
+       "GDP in $Billions":2465.454,
+       "GDP per cap":36854.97,
+       "jurisdiction":"France",
+       "population in millions":66.8961
+    },
+    {
+       "GDP in $Billions":3466.7569,
+       "GDP per cap":41936.06,
+       "jurisdiction":"Germany",
+       "population in millions":82.6677
+    },
+    {
+       "GDP in $Billions":194.5587,
+       "GDP per cap":18103.97,
+       "jurisdiction":"Greece",
+       "population in millions":10.7467
+    },
+    {
+       "GDP in $Billions":124.3429,
+       "GDP per cap":12664.85,
+       "jurisdiction":"Hungary",
+       "population in millions":9.818
+    },
+    {
+       "GDP in $Billions":294.0536,
+       "GDP per cap":61606.48,
+       "jurisdiction":"Ireland",
+       "population in millions":4.7731
+    },
+    {
+       "GDP in $Billions":1849.9705,
+       "GDP per cap":30527.27,
+       "jurisdiction":"Italy",
+       "population in millions":60.6006
+    },
+    {
+       "GDP in $Billions":27.6774,
+       "GDP per cap":14118.06,
+       "jurisdiction":"Latvia",
+       "population in millions":1.9604
+    },
+    {
+       "GDP in $Billions":42.7389,
+       "GDP per cap":14879.68,
+       "jurisdiction":"Lithuania",
+       "population in millions":2.8723
+    },
+    {
+       "GDP in $Billions":59.9478,
+       "GDP per cap":102831.32,
+       "jurisdiction":"Luxembourg",
+       "population in millions":0.583
+    },
+    {
+       "GDP in $Billions":10.9491,
+       "GDP per cap":25058.17,
+       "jurisdiction":"Malta",
+       "population in millions":0.4369
+    },
+    {
+       "GDP in $Billions":770.845,
+       "GDP per cap":45294.78,
+       "jurisdiction":"Netherlands",
+       "population in millions":17.0184
+    },
+    {
+       "GDP in $Billions":469.5087,
+       "GDP per cap":12372.42,
+       "jurisdiction":"Poland",
+       "population in millions":37.948
+    },
+    {
+       "GDP in $Billions":204.5647,
+       "GDP per cap":19813.31,
+       "jurisdiction":"Portugal",
+       "population in millions":10.3246
+    },
+    {
+       "GDP in $Billions":186.6906,
+       "GDP per cap":9474.13,
+       "jurisdiction":"Romania",
+       "population in millions":19.7053
+    },
+    {
+       "GDP in $Billions":89.5518,
+       "GDP per cap":16495.99,
+       "jurisdiction":"Slovak Republic",
+       "population in millions":5.4287
+    },
+    {
+       "GDP in $Billions":43.9906,
+       "GDP per cap":21304.57,
+       "jurisdiction":"Slovenia",
+       "population in millions":2.0648
+    },
+    {
+       "GDP in $Billions":1232.0882,
+       "GDP per cap":26528.49,
+       "jurisdiction":"Spain",
+       "population in millions":46.444
+    },
+    {
+       "GDP in $Billions":510.9998,
+       "GDP per cap":51599.87,
+       "jurisdiction":"Sweden",
+       "population in millions":9.9031
+    },
+    {
+       "GDP in $Billions":2618.8857,
+       "GDP per cap":39899.39,
+       "jurisdiction":"United Kingdom",
+       "population in millions":65.6372
+    }
+ ]

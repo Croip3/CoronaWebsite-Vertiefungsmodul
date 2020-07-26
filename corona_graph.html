@@ -74,6 +74,12 @@
 
                 <hr>
 
+                <div id="coronaInRelationToPopulation">
+
+                </div>
+
+                <hr>
+
                 <div id="topFiveWorldwide" style="text-align: center;">
                     <h3>
                         TOP 5 CASES RANKING WOLRDWIDE
@@ -107,7 +113,7 @@
 
         <footer>
             &copy; Christopher Wittig 2020
-            <p>Souce: https://thevirustracker.com/</p>
+            <p>Source: https://thevirustracker.com/</p>
         </footer>
 
         <script>      
@@ -119,7 +125,7 @@
         var totalCured = 0;
         var totalDeaths = 0;
 
-        const euCountry = ["Switzerland", "Portugal", "Spain", "France", "Ireland", "United Kingdom", "Belgium", "Luxembourg", "Netherlands", "Germany", "Italy", "Malta", "Greece", "Cyprus", "Bulgaria", "Poland", "Romania", "Croatia", "Slovenia", "Austria", "Hungary", "Slovakia", "Czechia",  "Lithuania", "Latvia", "Estonia", "Finland", "Sweden", "Norway", "Denmark"];
+        const euCountry = ["MAlta", "Portugal", "Spain", "France", "Ireland", "United Kingdom", "Belgium", "Luxembourg", "Netherlands", "Germany", "Italy", "Malta", "Greece", "Cyprus", "Bulgaria", "Poland", "Romania", "Croatia", "Slovenia", "Austria", "Hungary", "Slovakia", "Czechia",  "Lithuania", "Latvia", "Estonia", "Finland", "Sweden", "Denmark"];
         const countryTitleEu = [];
         const countryCasesEu = [];
         const countryRecoveredEu = [];
@@ -140,29 +146,49 @@
             await get_data();
 
             //BIG EUROPE CHART
-            var ctx = document.getElementById('europeChart').getContext('2d');
-            var europeChart = new Chart(ctx, {
-                type: 'horizontalBar',
-                data: {
-                    labels: countryTitleEu,
-                    datasets: [{
-                        label: 'total cases',
-                        backgroundColor: '#122c4d',
-                        stack: 'stack 0',
-                        borderWidth: 1,
-                        data: countryCasesEu
-                    }, {
+            //var ctx = document.getElementById('europeChart').getContext('2d');
+            //var europeChart = new Chart(ctx, {
+                var chartData ={
+
+                labels: countryTitleEu,
+                datasets: [
+                {
+                    type: 'line',
+                    label: 'ratio corona cases - country population',
+                    borderColor: '#578fda',
+                    stack: 'stack 2',
+                    yAxisID: 'B',
+                    data: coronaPercentage
+                }, {
+                    type: 'bar',
+                    label: 'total cases',
+                    backgroundColor: '#122c4d',
+                    stack: 'stack 0',
+                    borderWidth: 1,
+                    yAxisID: 'A',
+                    data: countryCasesEu
+                }, {
+                    type: 'bar',
                     label: 'deaths',
                     backgroundColor: '#d15055',
                     stack: 'stack 1',
+                    yAxisID: 'A',
                     data: countryDeathsEu
-                    },{
+                }, {
+                    type: 'bar',
                     label: 'recovered',
                     backgroundColor: '#e66d58',
-                    stack: 'stack 1',
+                    stack: 'stack 1', 
+                    yAxisID: 'A',
                     data: countryRecoveredEu
-                    }]
-                },
+                } ]
+                }
+
+                var ctx = document.getElementById('europeChart').getContext('2d');
+                var europeChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: chartData,
+                
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
@@ -183,7 +209,18 @@
                             }
                         }],
                         yAxes: [{
-                            stacked: true
+                            stacked: true,
+                            id: 'A',
+                            type: 'linear',
+                            position: 'left',
+                        }, {
+                            id: 'B',
+                            type: 'linear',
+                            position: 'right',
+                            ticks: {
+                            //max: 1,
+                            //min: 0
+                            }
                         }]
                     }
                 }
@@ -299,6 +336,7 @@
 
         var countrySortCases = [];
         var countrySort = [];
+        var coronaPercentage = [];
 
         async function get_data(){
             var data = {}
@@ -314,10 +352,18 @@
             } catch (err){
                 console.log("backup data");
                 const response =  await fetch("backup_data/backup_all.json");
-                backup_data = await response.text();
+                var backup_data = await response.text();
                 var data = JSON.parse(backup_data);
                 console.log(data);
             }
+
+            //fetch population data
+            //url = https://pkgstore.datahub.io/opendatafortaxjustice/eucountrydatawb/eucountrydatawb_json/data/2a7da1604df9e5cb387bd807249ac03e/eucountrydatawb_json.json
+            console.log("population Data");
+            const responsePopulation =  await fetch("backup_data/population.json");
+            var p_data = await responsePopulation.text();
+            var populationData = JSON.parse(p_data);
+            console.log(populationData);
             
             //push data in arrays
             for(var i=1; i < Object.keys(data.countryitems[0]).length; i++){
@@ -350,6 +396,18 @@
                     }                    
                 }
             }
+
+            
+
+            //corona cases per citizen
+            var populationFlag = 0;
+            for(var i=0; i < Object.keys(populationData).length; i++){
+                if(populationData[i]['jurisdiction'] != "Malta"){
+                    coronaPercentage.push( Math.round( ((countryCasesEu[i-populationFlag]*100) / (populationData[i]['population in millions']*1000000)) *100) /100 );
+                }else{
+                    populationFlag = 1;
+                }
+            }
             
             //calc total cases
             for(var i=1; i < Object.keys(data.countryitems[0]).length; i++){
@@ -379,7 +437,7 @@
             
             while(unsorted){
                 unsorted = false;
-                console.log("unsorted");
+                //console.log("unsorted");
                 for(let i = 0; i < countrySortCases.length; i++){
                     if(countrySortCases[i] < countrySortCases[i+1]){
                         var temp = countrySortCases[i];
