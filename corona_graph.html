@@ -53,38 +53,34 @@
                     </div>                
                 </div>
 
-                <div id="europe-chart">
+                <div id="europe-chart" style="border-left: #122c4d solid 1em; border-right: #122c4d solid 1em;">
                     <h3>
                         Covid-19 in Europe
                     </h3>
-                    <canvas class="chart" id="europeChart" width="500" height="600"></canvas>
+                    <canvas class="chart" id="europeChart" width="500" height="500"></canvas>
                 </div>
-
-                <hr>
                 
-                <div id="europeChartToday">
+                <div style="border-left: #f79e64 solid 1em; border-right: #f79e64 solid 1em;">
+                <div id="europeChartToday" >
                         <!--<h3>
                             new cases and deaths in Europe today
                         </h3>-->
-                        <div style="width: 100%;">
+                        <div id="chartTodayWrapper" style="width: 100%;">
                         <canvas class="chart" id="europeTodayChartNewCases" width="200" height="100"></canvas>
                         </div>
                         
                 </div>
-
-                <hr>
+                </div>
 
                 <div id="coronaInRelationToPopulation">
 
                 </div>
 
-                <hr>
-
-                <div id="topFiveWorldwide" style="text-align: center;">
-                    <h3>
+                <div id="topFiveWorldwide" style="text-align: center;" style="border-left: #122c4d solid 1em; border-right: #122c4d solid 1em;">
+                    <h3 style="border-left: #d15055 solid 0.5em; border-right: #d15055 solid 0.5em;">
                         TOP 5 CASES RANKING WOLRDWIDE
                     </h3>
-                    <div class="topfiveWrapper">
+                    <div class="topfiveWrapper" style="border-left: #d15055 solid 1em; border-right: #d15055 solid 1em;">
                         <div class="topfive" style="width: 50%; float: right;">
                             <div class="topFiveRank" style="background-color: #d15055;">
                                 <p id="rankOneName" style="background-color: #d15055;">Rank#1</p>
@@ -202,10 +198,23 @@
                         },
                     },
                     scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontSize: 20,
+
+                            }
+                        }],
                         yAxes: [{
                             stacked: true,
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                fontSize: 20,
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontSize: 20,
+
                             }
                         }],
                         yAxes: [{
@@ -227,6 +236,7 @@
             });
             //console.log("resize");
             //myChart.resize();
+
 
             //EUROPE TODAY CASES
             var ctx = document.getElementById('europeTodayChartNewCases').getContext('2d');
@@ -265,9 +275,16 @@
                         bodyFontSize: 20
                     },
                     scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontSize: 20,
+
+                            }
+                        }],
                         yAxes: [{
                             ticks: {
-                                //max: 300,
+                                fontSize: 20,
+
                             }
                         }]
                     }
@@ -308,7 +325,7 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                //max: 300,
+                                display: false,
                             }
                         }]
                     }
@@ -338,6 +355,9 @@
         var countrySort = [];
         var coronaPercentage = [];
 
+        countryTimelineCases = [];
+        countryTimelineTitle = [];
+
         async function get_data(){
             var data = {}
             //fetch json
@@ -364,6 +384,27 @@
             var p_data = await responsePopulation.text();
             var populationData = JSON.parse(p_data);
             console.log(populationData);
+
+            //Timeline countrys
+            /*countryToGet = ['US'];
+
+            for(var i = 0; i < countryToGet.length; i++){
+                const api_url_eachCountry = 'https://api.thevirustracker.com/free-api?countryTimeline=' + countryToGet[i];
+                const response_eachCountry = await fetch(api_url_eachCountry);
+                data_eachCountry = await response_eachCountry.json();
+                console.log(data_eachCountry);
+                console.log("API data_eachCountry");
+
+                //countryTimelineCases.push([]);
+                //for(var i=1; i < Object.keys(data.countryitems[0]).length; i++){
+
+            }*/
+
+
+
+
+
+
             
             //push data in arrays
             for(var i=1; i < Object.keys(data.countryitems[0]).length; i++){
@@ -415,7 +456,7 @@
                 //console.log(data.countryitems[0][i].title)
                 totalCases = totalCases + data.countryitems[0][i].total_cases;
                 totalCured = totalCured + data.countryitems[0][i].total_recovered;
-                totalDeaths = totalDeaths + data.countryitems[0][i].total_deaths;                 
+                totalDeaths = totalDeaths + data.countryitems[0][i].total_deaths;               
             }
             console.log(totalCases);
             console.log(totalCured);
